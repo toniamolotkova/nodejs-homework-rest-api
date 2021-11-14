@@ -10,11 +10,11 @@ const signup = async (req, res) => {
   const newUser = new User({ email })
   newUser.setPassword(password)
   await newUser.save()
-
+  const { subscription } = newUser
   res.status(201).json({
     user: {
       email: email,
-      subscription: 'starter',
+      subscription: subscription,
     }
   })
 }
