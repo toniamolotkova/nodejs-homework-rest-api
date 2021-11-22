@@ -11,10 +11,10 @@ const updateAvatar = async (req, res, next) => {
   const { _id } = req.user
   console.log(req.file)
   const file = await Jimp.read(req.file.path)
-  await file.resize(250, 250)
+  await file.resize(250, 250).write(req.file.path)
 
   const { path: tempUpload, originalname } = req.file
-
+  console.log(req.file.size)
   try {
     const filename = `${randomUUID()}_${originalname}`
     const resultUpload = path.join(userPath, filename)
